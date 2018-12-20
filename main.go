@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"errors"
 	"flag"
-	"io/ioutil"
+	"io/ioutil" 
 	"strings"
 	"text/template"
-	"time"
+
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -57,7 +57,7 @@ func main() {
 	}))
 	svc := ecr.New(sess)
 
-	for {
+	// for {
 		// Get the ECR authorization token from AWS
 		tokenInput := &ecr.GetAuthorizationTokenInput{}
 		if *profile != "" {
@@ -92,9 +92,9 @@ func main() {
 			panic(err.Error())
 		}
 
-		// sleep interval
-		time.Sleep(time.Duration(*interval) * time.Second)
-	}
+	// 	// sleep interval
+	// 	time.Sleep(time.Duration(*interval) * time.Second)
+	// }
 
 }
 
@@ -132,7 +132,7 @@ func (k *kubernetesAPI) applyDockerCfgSecret(cfg []byte, secretName, namespace s
 			Name: secretName,
 		},
 		Data: map[string][]byte{
-			"config.json": cfg,
+			".dockerconfigjson": cfg,
 		},
 	}
 
